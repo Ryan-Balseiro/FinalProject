@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FunFactApp</string>
+    <string name="title">Fun Facts</string>
+    <string name="get_facts">Get \n Facts</string>
+    <string name="max_350">max 350</string>
+    <string name="instructions">Enter desired \n number of results</string>
+</resources>
