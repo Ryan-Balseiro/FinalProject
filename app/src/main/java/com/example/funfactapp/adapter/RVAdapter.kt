@@ -6,20 +6,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.funfactapp.R
-import com.example.funfactapp.model.RecyclerList
+import com.example.funfactapp.model.DataItem
 
 class RVAdapter: RecyclerView.Adapter<RVAdapter.MyViewHolder>() {
 
-    var items = ArrayList<RecyclerList>()
+    var items = ArrayList<DataItem>()
 
-    fun setUpdatedData(items: ArrayList<RecyclerList>){
+    fun setUpdatedData(items: ArrayList<DataItem>){
         this.items = items
         notifyDataSetChanged()
     }
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val tvFact = view.findViewById<TextView>(R.id.tv_fact)
-        fun bind(data: RecyclerList){
+        fun bind(data: DataItem){
             tvFact.text = data.toString()
         }
     }

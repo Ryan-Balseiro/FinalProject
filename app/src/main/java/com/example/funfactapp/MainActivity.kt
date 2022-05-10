@@ -27,11 +27,8 @@ class MainActivity : AppCompatActivity() {
         binding.btnGetFacts.setOnClickListener{
             viewModel.checkInput(binding.etInput.text.toString())
             binding.etInput.setText(viewModel.reqNumber.toString())
-
-            //todo: delete
-            Toast.makeText(this, "from MainAct: " + viewModel.reqNumber.toString(), Toast.LENGTH_SHORT).show()
-            viewModel.showToast(this)
-            //todo: delete end
+            //viewModel.makeApiCall()
+            viewModel.makeApiCall2()
         }
         setupFragment()
     }
@@ -40,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val fragment = FragmentList.newInstance()
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        //fragmentTransaction.replace(binding.container, fragment)
+        fragmentTransaction.replace(R.id.container, fragment)
         fragmentTransaction.commit()
     }
 }

@@ -4,4 +4,6 @@
     <string name="get_facts">Get \n Facts</string>
     <string name="max_350">max 350</string>
     <string name="instructions">Enter desired \n number of results</string>
+    <string name="frag_title">Facts</string>
+    <string name="temp">temp</string>
 </resources>

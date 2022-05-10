@@ -5,14 +5,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
     companion object{
-        const val BASE_URL = "https://api.aakhilv.me/fun/facts/?num=1"
+        const val BASE_URL = "https://api.aakhilv.me/fun/facts/"
 
-        fun getRetroInstance(): Retrofit{
+        fun getRetroInstance(): RetroService {
+//            return Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build()
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
+                .create(RetroService::class.java)
         }
     }
-
 }
