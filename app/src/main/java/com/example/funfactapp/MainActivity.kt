@@ -12,12 +12,15 @@ import com.example.funfactapp.viewmodel.FactViewModel
 private const val TAG = "MainActivity"
 //@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+//    val viewModel:FactViewModel by activityViewModels()
     private lateinit var binding: ActivityMainBinding
+    val viewModel by lazy {ViewModelProvider(this)[FactViewModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val viewModel = ViewModelProvider(this)[FactViewModel::class.java]
+
 
         binding = ActivityMainBinding.inflate(
             layoutInflater
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFragment() {
-        val fragment = FragmentList.newInstance()
+        val fragment = FragmentList.newInstance(viewModel = viewModel)
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container, fragment)

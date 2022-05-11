@@ -7,12 +7,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.funfactapp.FragmentList
 import com.example.funfactapp.MainActivity
 import com.example.funfactapp.model.DataItem
 import com.example.funfactapp.rest.RetroService
 import com.example.funfactapp.rest.RetroService2
 import com.example.funfactapp.rest.RetrofitInstance
 import com.google.gson.JsonArray
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,10 +24,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 private const val TAG = "FactViewModel"
+
 class FactViewModel: ViewModel() {
 
     //
-    var fact = ""
+    //var fact = ""
 
     //live data
     private val _factList = MutableLiveData<String>()
@@ -38,6 +41,9 @@ class FactViewModel: ViewModel() {
     }
     fun getRecyclerListObserver(): LiveData<String>{
         return factList
+    }
+    init{
+        _factList.value = ""
     }
 
     fun checkInput(input: String) {
@@ -90,8 +96,12 @@ class FactViewModel: ViewModel() {
                     if (response.isSuccessful) {
                         val data = response.body()
                         Log.d(TAG, "onResponse: $data")
-                        _factList.postValue(data.toString())
-                        fact = data.toString()
+                        data?.let {
+                            _factList.postValue(it.text)
+                        }
+//                        _factList.postValue(data.text)
+//                        _factList.value = data.toString()
+//                        fact = data.toString()
                     }
                 }
             })
